@@ -22,7 +22,7 @@ public class AppointmentSystem {
 
         // Allow the user to make an appointment or cancel a scheduled appointment
         System.out.println("Options:");
-        System.out.println("1. Make an appointment with a doctor");
+        System.out.println("\n1. Make an appointment with a doctor");
         System.out.println("2. Cancel a scheduled appointment");
         System.out.println("3. Exit");
 
@@ -171,7 +171,7 @@ public class AppointmentSystem {
     private static String getValidUsername() {
         String username;
         do {
-            System.out.print("Enter username (6-15 characters, uppercase letters): ");
+            System.out.print("សូមបញ្ចូលឈ្មោះអ្នកប្រើប្រាស់ជាភាសាអង់គ្លេស (យ៉ាងតិច 6តួអក្សរ និងច្រើនបំផុត 15តួអក្សរ, ត្រូវតែតួអក្សរធំ)\n Enter username (6-15 characters, uppercase letters): ");
             username = scanner.nextLine().trim();
         } while (!isValidUsername(username));
         return username;
@@ -185,7 +185,7 @@ public class AppointmentSystem {
     private static String getValidPhoneNumber() {
         String phoneNumber;
         do {
-            System.out.print("Enter phone number (6-12 digits, numbers only): ");
+            System.out.print("សូមបញ្ចូលលេខទូរស័ព្ទរបស់លោកអ្នក(យ៉ាងតិច 6ខ្ទង់ និងច្រើនបំផុត 15ខ្ទង់, ត្រូវតែជាលេខ) \n Enter phone number (6-12 digits, numbers only): ");
             phoneNumber = scanner.nextLine().trim();
         } while (!isValidPhoneNumber(phoneNumber));
         return phoneNumber;
@@ -199,7 +199,7 @@ public class AppointmentSystem {
     private static String getValidEmail() {
         String email;
         do {
-            System.out.print("Enter email (e.g., username@gmail.com): ");
+            System.out.print("សូមបញ្ចូលអ៊ីមែលរបស់លោកអ្នក (ឧ. username@gmail.com)\n Enter email (e.g., username@gmail.com): ");
             email = scanner.nextLine().trim();
         } while (!isValidEmail(email));
         return email;
