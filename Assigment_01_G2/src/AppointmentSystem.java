@@ -91,16 +91,16 @@ public class AppointmentSystem {
                 // Display appointment details for confirmation
                 System.out.println("\n===================================");
                 System.out.println("Appointment Details:");
-                System.out.println("User: " + newUser.username);
+                System.out.println("User Name: " + newUser.username);
+                System.out.println("User Phone Number: " + newUser.phoneNumber);
+                System.out.println("User Email: " + newUser.email);
                 System.out.println("Doctor: " + chosenDoctor.name);
                 System.out.println("Date: " + date);
                 System.out.println("Time: " + time);
                 System.out.println("===================================");
-
                 // Ask for confirmation with a more user-friendly prompt
                 System.out.print("Do you want to confirm this appointment? (yes/no): ");
                 String confirmation = scanner.nextLine().toLowerCase();
-
                 if ("yes".equals(confirmation)) {
                     // Add the appointment to the appointments map
                     appointments.put(username, new Appointment(newUser, chosenDoctor, date.toString(), time.toString()));
@@ -111,30 +111,59 @@ public class AppointmentSystem {
             } else {
                 System.out.println("Invalid doctor selection or doctor not available.");
             }
-
         } else if (option == 2) {
             // Cancel a scheduled appointment
             System.out.print("Enter doctor's name: ");
             String doctorName = scanner.nextLine();
 
-            if (doctorName.equals("Sen Pisey")) {//
-                //   System.out.print("Enter doctor's name: ");
-                System.out.print("Enter appointment date (MM/DD/YYYY): ");
-                String date = scanner.nextLine();
-                System.out.print("Enter appointment time: ");
-                String time = scanner.nextLine();
-                System.out.print("===================================\n");
-                System.out.println("Appointment Canceled:");
-                System.out.println("User: " + newUser.username);
-                System.out.println("Doctor: " + "Sen Pisey");
-                System.out.println("Date: " + date);
-                System.out.println("Time: " + time);
+            if (doctorName.equals("Sen Pisey")) {  // Check if the entered doctor's name is valid
+                LocalDate date = getValidDateInput();
+                LocalTime time = getValidTimeInput();
+
+                String appointmentKey = doctorName + "_" + date.toString() + "_" + time.toString();
+
+                // Retrieve appointment details
+                Appointment canceledAppointment = appointments.get(appointmentKey);
+                // Ask for confirmation with a more user-friendly prompt
+                System.out.print("Do you want to cancel this appointment? (yes/no): ");
+                String confirmation = scanner.nextLine().toLowerCase();
+                if ("yes".equals(confirmation)) {
+                    // Remove the appointment from the appointments map
+                    appointments.remove(appointmentKey);
+                    System.out.println("\nAppointment Canceled!");
+
+                    // Display appointment details for confirmation
+                    System.out.println("\n===================================");
+                    System.out.println("Detail info");
+                    System.out.println("-------------------------------------");
+                    System.out.println("User Name: " + newUser.username);
+                    System.out.println("User Phone Number: " + newUser.phoneNumber);
+                    System.out.println("User Email: " + newUser.email);
+                    System.out.println("Doctor: " + doctorName);
+                    System.out.println("Date: " + date);
+                    System.out.println("Time: " + time);
+                    System.out.println("===================================");
+                    } else {
+                    System.out.println("\nAppointment Not Canceled.");
+                    System.out.println("\n===================================");
+                    System.out.println("Remaining Appointments:");
+                    System.out.println("-------------------------------------");
+                    System.out.println("User Name: " + newUser.username);
+                    System.out.println("User Phone Number: " + newUser.phoneNumber);
+                    System.out.println("User Email: " + newUser.email);
+                    System.out.println("Doctor: " + doctorName);
+                    System.out.println("Date: " + date);
+                    System.out.println("Time: " + time);
+                    System.out.println("===================================");
+                }
             } else {
-                System.out.println("No scheduled appointments found for this user.");
+                System.out.println("Invalid doctor name.");
             }
+
         } else if (option == 3) {
-            System.out.println("Exiting the appointment system.");
-        } else {
+            System.out.println("System exit ....");
+        }
+        else {
             System.out.println("Invalid option selected.");
         }
 
